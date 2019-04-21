@@ -38,9 +38,9 @@ namespace WindowsFormsApp1
                     if (!string.IsNullOrWhiteSpace(textBox3.Text))
                         if(textBox2.Text.Equals(textBox3.Text))
                             if(check())
-                        if (!System.IO.File.Exists(@"D:\" + filename + ".txt"))
+                        if (!System.IO.File.Exists(@"F:\" + filename + ".txt"))
             {
-                System.IO.File.Create(@"D:\" + filename + ".txt");
+                using (System.IO.File.Create(@"F:\" + filename + ".txt"))
                 for(int i = 0; i < pass.Length; i++)
                 {
                     p = pass[i] - 48;
@@ -62,7 +62,7 @@ namespace WindowsFormsApp1
                                         }                    
                 }
                 using (System.IO.StreamWriter file =
-              new System.IO.StreamWriter(@"D:\secrets.txt", true))
+              new System.IO.StreamWriter(@"F:\secrets.txt", true))
                 {
                     file.WriteLine(cypher2);
                     file.WriteLine(pass2);

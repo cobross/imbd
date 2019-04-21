@@ -7,11 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace WindowsFormsApp1
 {
     public partial class Form3 : Form
-    {
+    {   public List<ImdbEntity> imbd = new List<ImdbEntity>();
         string name = "";
         string pass = "";
         string cypher = "DEFGHIJKLMNOPQRSTUVWXYZABC";
@@ -27,7 +28,7 @@ namespace WindowsFormsApp1
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string[] str = System.IO.File.ReadAllLines(@"D:\secrets.txt");
+            string[] str = System.IO.File.ReadAllLines(@"F:\secrets.txt");
             name = textBox1.Text;
             pass = textBox2.Text;
             for (int i = 0; i < str.Length; i++)
@@ -36,13 +37,32 @@ namespace WindowsFormsApp1
                 {
                     i++;
                     if (pass.Equals(depass(str[i])))
-                            {
+                    {
+                        readall();
                         n = true;
                         this.Hide();
                     }
                 }
                 pass2 = "";
                 name2 = "";
+            }
+        }
+        public void readall()
+        {
+            string[] str = System.IO.File.ReadAllLines(@"F:\" + name + ".txt");
+            for (int i = 0; i < str.Length/9; i++)
+            {
+                ImdbEntity obj = new ImdbEntity();
+                obj.Title = str[0+i*9];
+                obj.Year = str[1 + i * 9];
+                obj.Rated = str[2 + i * 9];
+                obj.Runtime = str[3 + i * 9];
+                obj.Genre = str[4 + i * 9];
+                obj.Director = str[5 + i * 9];
+                obj.Writer = str[6 + i * 9];
+                obj.Actors = str[7 + i * 9];
+                obj.Plot = str[8 + i * 9];
+                imbd.Add(obj);
             }
         }
         public string depass(string pass3) {
