@@ -28,15 +28,15 @@ namespace WindowsFormsApp1
             textBox2.MaxLength = 6;
             label1.BackColor = Color.Transparent;
             label2.BackColor = Color.Transparent;
-            button1.BackgroundImage = new Bitmap(@"C:\Users\wewewewe\Desktop\app art\login.png");
+            button1.BackgroundImage = new Bitmap(@"C:\Users\yavor\OneDrive\Работен плот\app art\login.png");
             button1.BackgroundImageLayout = ImageLayout.Stretch;
-            this.BackgroundImage = new Bitmap(@"C:\Users\wewewewe\Desktop\app art\bg.jpg");
+            this.BackgroundImage = new Bitmap(@"C:\Users\yavor\OneDrive\Работен плот\app art\bg.jpg");
             this.BackgroundImageLayout = ImageLayout.Stretch;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string[] str = System.IO.File.ReadAllLines(@"F:\secrets.txt");
+            string[] str = System.IO.File.ReadAllLines(@"D:\secrets.txt");
             name = textBox1.Text;
             pass = textBox2.Text;
             for (int i = 0; i < str.Length; i++)
@@ -57,7 +57,7 @@ namespace WindowsFormsApp1
         }
         public void readall()
         {
-            string[] str = System.IO.File.ReadAllLines(@"F:\" + name + ".txt");
+            string[] str = System.IO.File.ReadAllLines(@"D:\" + name + ".txt");
             for (int i = 0; i < str.Length/10; i++)
             {
                 ImdbEntity obj = new ImdbEntity();

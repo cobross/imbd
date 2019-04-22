@@ -27,9 +27,9 @@ namespace WindowsFormsApp1
             label2.BackColor = Color.Transparent;
             label3.BackColor = Color.Transparent;
             label4.BackColor = Color.Transparent;
-            button1.BackgroundImage = new Bitmap(@"C:\Users\wewewewe\Desktop\app art\register.png");
+            button1.BackgroundImage = new Bitmap(@"C:\Users\yavor\OneDrive\Работен плот\app art\register.png");
             button1.BackgroundImageLayout = ImageLayout.Stretch;
-            this.BackgroundImage = new Bitmap(@"C:\Users\wewewewe\Desktop\app art\bg.jpg");
+            this.BackgroundImage = new Bitmap(@"C:\Users\yavor\OneDrive\Работен плот\app art\bg.jpg");
             this.BackgroundImageLayout = ImageLayout.Stretch;
         }
 
@@ -50,9 +50,9 @@ namespace WindowsFormsApp1
                         if (textBox2.Text.Equals(textBox3.Text))
                             if (check())
                                 if (textBox2.Text.Length < 7)
-                                    if (!System.IO.File.Exists(@"F:\" + filename + ".txt"))
+                                    if (!System.IO.File.Exists(@"D:\" + filename + ".txt"))
                                     {
-                                        using (System.IO.File.Create(@"F:\" + filename + ".txt"))
+                                        using (System.IO.File.Create(@"D:\" + filename + ".txt"))
                                             for (int i = 0; i < pass.Length; i++)
                                             {
                                                 p = pass[i] - 48;
@@ -74,7 +74,7 @@ namespace WindowsFormsApp1
                                             }
                                         }
                                         using (System.IO.StreamWriter file =
-                                      new System.IO.StreamWriter(@"F:\secrets.txt", true))
+                                      new System.IO.StreamWriter(@"D:\secrets.txt", true))
                                         {
                                             file.WriteLine(cypher2);
                                             file.WriteLine(pass2);

@@ -29,21 +29,21 @@ namespace WindowsFormsApp1
             
 
             InitializeComponent();
-            button8.BackgroundImage = new Bitmap(@"C:\Users\wewewewe\Desktop\app art\logo.png");
+            button8.BackgroundImage = new Bitmap(@"C:\Users\yavor\OneDrive\Работен плот\app art\logo.png");
             button8.BackgroundImageLayout = ImageLayout.Stretch;
-            button1.BackgroundImage = new Bitmap(@"C:\Users\wewewewe\Desktop\app art\watchlist.png");
+            button1.BackgroundImage = new Bitmap(@"C:\Users\yavor\OneDrive\Работен плот\app art\watchlist.png");
             button1.BackgroundImageLayout = ImageLayout.Stretch;
-            button6.BackgroundImage = new Bitmap(@"C:\Users\wewewewe\Desktop\app art\forward.png");
+            button6.BackgroundImage = new Bitmap(@"C:\Users\yavor\OneDrive\Работен плот\app art\forward.png");
             button6.BackgroundImageLayout = ImageLayout.Stretch;
-            button7.BackgroundImage = new Bitmap(@"C:\Users\wewewewe\Desktop\app art\back.png");
+            button7.BackgroundImage = new Bitmap(@"C:\Users\yavor\OneDrive\Работен плот\app art\back.png");
             button7.BackgroundImageLayout = ImageLayout.Stretch;
-            button3.BackgroundImage = new Bitmap(@"C:\Users\wewewewe\Desktop\app art\search.png");
+            button3.BackgroundImage = new Bitmap(@"C:\Users\yavor\OneDrive\Работен плот\app art\search.png");
             button3.BackgroundImageLayout = ImageLayout.Stretch;
-            button4.BackgroundImage = new Bitmap(@"C:\Users\wewewewe\Desktop\app art\login.png");
+            button4.BackgroundImage = new Bitmap(@"C:\Users\yavor\OneDrive\Работен плот\app art\login.png");
             button4.BackgroundImageLayout = ImageLayout.Stretch;
-            button5.BackgroundImage = new Bitmap(@"C:\Users\wewewewe\Desktop\app art\register.png");
+            button5.BackgroundImage = new Bitmap(@"C:\Users\yavor\OneDrive\Работен плот\app art\register.png");
             button5.BackgroundImageLayout = ImageLayout.Stretch;
-            this.BackgroundImage = new Bitmap(@"C:\Users\wewewewe\Desktop\app art\bg.jpg");
+            this.BackgroundImage = new Bitmap(@"C:\Users\yavor\OneDrive\Работен плот\app art\bg.jpg");
             this.BackgroundImageLayout = ImageLayout.Stretch;
             label6.BackColor = Color.Transparent;
             label1.BackColor = Color.Transparent;
@@ -81,7 +81,7 @@ namespace WindowsFormsApp1
             button6.Hide();
             button7.Hide();
             this.button2.MouseHover += button2_MouseHover;
-            using (System.IO.File.Create(@"F:\secrets.txt")) ;
+            using (System.IO.File.Create(@"D:\secrets.txt")) ;
         }
         public void quarter1(int i,int j)
         {
@@ -357,7 +357,7 @@ namespace WindowsFormsApp1
             if (Reg == true)
             {
                 using (System.IO.StreamWriter file =
-              new System.IO.StreamWriter(@"F:\"+name+".txt", true))
+              new System.IO.StreamWriter(@"D:\"+name+".txt", true))
                 {
                     file.WriteLine(label1.Text);
                     file.WriteLine(label2.Text);
