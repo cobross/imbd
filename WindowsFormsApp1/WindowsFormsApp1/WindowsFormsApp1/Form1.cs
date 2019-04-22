@@ -16,17 +16,64 @@ namespace WindowsFormsApp1
 
     public partial class Form1 : Form
     {
-        String plot;
+        string plot;
         Boolean Reg=false;
         string name;
         int pagenumber = 0;
         string writer = "";
         string actors = "";
+        string url2 = "";
         Form3 log = new Form3(false);
         public Form1()
         {
-           
+            
+
             InitializeComponent();
+            button8.BackgroundImage = new Bitmap(@"C:\Users\wewewewe\Desktop\app art\logo.png");
+            button8.BackgroundImageLayout = ImageLayout.Stretch;
+            button1.BackgroundImage = new Bitmap(@"C:\Users\wewewewe\Desktop\app art\watchlist.png");
+            button1.BackgroundImageLayout = ImageLayout.Stretch;
+            button6.BackgroundImage = new Bitmap(@"C:\Users\wewewewe\Desktop\app art\forward.png");
+            button6.BackgroundImageLayout = ImageLayout.Stretch;
+            button7.BackgroundImage = new Bitmap(@"C:\Users\wewewewe\Desktop\app art\back.png");
+            button7.BackgroundImageLayout = ImageLayout.Stretch;
+            button3.BackgroundImage = new Bitmap(@"C:\Users\wewewewe\Desktop\app art\search.png");
+            button3.BackgroundImageLayout = ImageLayout.Stretch;
+            button4.BackgroundImage = new Bitmap(@"C:\Users\wewewewe\Desktop\app art\login.png");
+            button4.BackgroundImageLayout = ImageLayout.Stretch;
+            button5.BackgroundImage = new Bitmap(@"C:\Users\wewewewe\Desktop\app art\register.png");
+            button5.BackgroundImageLayout = ImageLayout.Stretch;
+            this.BackgroundImage = new Bitmap(@"C:\Users\wewewewe\Desktop\app art\bg.jpg");
+            this.BackgroundImageLayout = ImageLayout.Stretch;
+            label6.BackColor = Color.Transparent;
+            label1.BackColor = Color.Transparent;
+            label2.BackColor = Color.Transparent;
+            label3.BackColor = Color.Transparent;
+            label4.BackColor = Color.Transparent;
+            label7.BackColor = Color.Transparent;
+            label8.BackColor = Color.Transparent;
+            label11.BackColor = Color.Transparent;
+            label12.BackColor = Color.Transparent;
+            label13.BackColor = Color.Transparent;
+            label14.BackColor = Color.Transparent;
+            label15.BackColor = Color.Transparent;
+            label16.BackColor = Color.Transparent;
+            label19.BackColor = Color.Transparent;
+            label20.BackColor = Color.Transparent;
+            label21.BackColor = Color.Transparent;
+            label22.BackColor = Color.Transparent;
+            label23.BackColor = Color.Transparent;
+            label24.BackColor = Color.Transparent;
+            label27.BackColor = Color.Transparent;
+            label28.BackColor = Color.Transparent;
+            label29.BackColor = Color.Transparent;
+            label30.BackColor = Color.Transparent;
+            label31.BackColor = Color.Transparent;
+            label32.BackColor = Color.Transparent;
+            radioButton1.BackColor = Color.Transparent;
+            radioButton2.BackColor = Color.Transparent;
+            radioButton3.BackColor = Color.Transparent;
+            radioButton4.BackColor = Color.Transparent;
             quarter1(0, 0);
             quarter2(0);
             quarter3(0);
@@ -34,6 +81,7 @@ namespace WindowsFormsApp1
             button6.Hide();
             button7.Hide();
             this.button2.MouseHover += button2_MouseHover;
+            using (System.IO.File.Create(@"F:\secrets.txt")) ;
         }
         public void quarter1(int i,int j)
         {
@@ -145,13 +193,25 @@ namespace WindowsFormsApp1
         }
         private int sortYear1(ImdbEntity a, ImdbEntity b)
         {
-
-            return a.Title.CompareTo(b.Year);
+            int y1=0;
+            int y2=0;
+            Int32.TryParse(a.Year, out y1);
+            Int32.TryParse(b.Year, out y2);
+            if (y1 < y2)
+                return 1;
+            else 
+                return - 1;
         }
         private int sortYear2(ImdbEntity a, ImdbEntity b)
         {
-
-            return b.Title.CompareTo(a.Year);
+            int y1 = 0;
+            int y2 = 0;
+            Int32.TryParse(a.Year, out y1);
+            Int32.TryParse(b.Year, out y2);
+            if (y2 < y1)
+                return 1;
+            else
+                return -1;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -179,6 +239,7 @@ namespace WindowsFormsApp1
                 label4.Text = log.imbd[pagenumber].Runtime;
                 label7.Text = log.imbd[pagenumber].Genre;
                 label8.Text = log.imbd[pagenumber].Director;
+                loadimg(button2, log.imbd[pagenumber].Poster);
                 pagenumber++;            size--;
             }
             if (size > 0)
@@ -190,6 +251,7 @@ namespace WindowsFormsApp1
                 label14.Text = log.imbd[pagenumber].Rated;
                 label15.Text = log.imbd[pagenumber].Year;
                 label16.Text = log.imbd[pagenumber].Title;
+                loadimg(button11, log.imbd[pagenumber].Poster);
                 pagenumber++; size--;
             }
             else quarter2(0);
@@ -202,6 +264,7 @@ namespace WindowsFormsApp1
                 label22.Text = log.imbd[pagenumber].Rated;
                 label23.Text = log.imbd[pagenumber].Year;
                 label24.Text = log.imbd[pagenumber].Title;
+                loadimg(button13, log.imbd[pagenumber].Poster);
                 pagenumber++; size--;
             }
             else quarter3(0);       
@@ -214,6 +277,7 @@ namespace WindowsFormsApp1
                 label30.Text = log.imbd[pagenumber].Rated;
                 label31.Text = log.imbd[pagenumber].Year;
                 label32.Text = log.imbd[pagenumber].Title;
+                loadimg(button15, log.imbd[pagenumber].Poster);
                 pagenumber++;size--;
             }
             else quarter4(0);
@@ -245,16 +309,29 @@ namespace WindowsFormsApp1
                      writer = obj.Writer;
                      actors = obj.Actors;
                      plot = obj.Plot;
+                     url2 = obj.Poster;
                 }
                 else
                 {
                     MessageBox.Show("Movie not Found!!!");
                 }
-
+                loadimg(button2, url2);
                 quarter1(1, 1);
                 quarter2(0);
                 quarter3(0);
                 quarter4(0);
+                textBox1.Clear();
+            }
+        }
+        private void loadimg(Button B, string url2)
+        {
+            var request = WebRequest.Create(url2);
+
+            using (var response = request.GetResponse())
+            using (var stream = response.GetResponseStream())
+            {
+                B.BackgroundImage = Bitmap.FromStream(stream);
+                B.BackgroundImageLayout = ImageLayout.Stretch;
             }
         }
         private void button2_MouseHover(object sender, EventArgs e)
@@ -291,6 +368,7 @@ namespace WindowsFormsApp1
                     file.WriteLine(writer);
                     file.WriteLine(actors);
                     file.WriteLine(plot);
+                    file.WriteLine(url2);
                 }
             }
             else
@@ -305,6 +383,7 @@ namespace WindowsFormsApp1
             obj.Director = label8.Text;
             obj.Writer = writer;
             obj.Actors = actors;
+            obj.Poster = url2;
             log.imbd.Add(obj);
         }
 
@@ -323,6 +402,7 @@ namespace WindowsFormsApp1
         {
             if (log.getn() == true)
             {
+                if(log.imbd.Count>4)
                 page();
             }
         }
@@ -359,7 +439,7 @@ namespace WindowsFormsApp1
 
         private void radioButton3_CheckedChanged(object sender, EventArgs e)
         {
-            log.imbd.Sort(sortYear1);
+            log.imbd.Sort(sortYear2);
             pagenumber = 0;
             page();
             button6.Show();
@@ -368,7 +448,7 @@ namespace WindowsFormsApp1
 
         private void radioButton4_CheckedChanged(object sender, EventArgs e)
         {
-            log.imbd.Sort(sortYear2);
+            log.imbd.Sort(sortYear1);
             pagenumber = 0;
             page();
             button6.Show();

@@ -24,6 +24,14 @@ namespace WindowsFormsApp1
         {
             n = i;
             InitializeComponent();
+            textBox2.PasswordChar = '*';
+            textBox2.MaxLength = 6;
+            label1.BackColor = Color.Transparent;
+            label2.BackColor = Color.Transparent;
+            button1.BackgroundImage = new Bitmap(@"C:\Users\wewewewe\Desktop\app art\login.png");
+            button1.BackgroundImageLayout = ImageLayout.Stretch;
+            this.BackgroundImage = new Bitmap(@"C:\Users\wewewewe\Desktop\app art\bg.jpg");
+            this.BackgroundImageLayout = ImageLayout.Stretch;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -50,18 +58,19 @@ namespace WindowsFormsApp1
         public void readall()
         {
             string[] str = System.IO.File.ReadAllLines(@"F:\" + name + ".txt");
-            for (int i = 0; i < str.Length/9; i++)
+            for (int i = 0; i < str.Length/10; i++)
             {
                 ImdbEntity obj = new ImdbEntity();
-                obj.Title = str[0+i*9];
-                obj.Year = str[1 + i * 9];
-                obj.Rated = str[2 + i * 9];
-                obj.Runtime = str[3 + i * 9];
-                obj.Genre = str[4 + i * 9];
-                obj.Director = str[5 + i * 9];
-                obj.Writer = str[6 + i * 9];
-                obj.Actors = str[7 + i * 9];
-                obj.Plot = str[8 + i * 9];
+                obj.Title = str[0+i*10];
+                obj.Year = str[1 + i * 10];
+                obj.Rated = str[2 + i * 10];
+                obj.Runtime = str[3 + i * 10];
+                obj.Genre = str[4 + i * 10];
+                obj.Director = str[5 + i * 10];
+                obj.Writer = str[6 + i * 10];
+                obj.Actors = str[7 + i * 10];
+                obj.Plot = str[8 + i * 10];
+                obj.Poster = str[9 + i * 10];
                 imbd.Add(obj);
             }
         }
@@ -70,8 +79,10 @@ namespace WindowsFormsApp1
             {
 
                 int p;
-                p = pass3[i] - 48;
-                p = p / (i + 1);
+                p = 10*(pass3[i] - 48);
+                i++;
+                p += pass3[i] - 48;
+                p = p % 10;
                 pass2 += p.ToString();
             }
 

@@ -20,6 +20,17 @@ namespace WindowsFormsApp1
         public Form2()
         {
             InitializeComponent();
+            textBox2.PasswordChar = '*';
+            textBox2.MaxLength = 6;
+            textBox3.PasswordChar = '*';
+            textBox3.MaxLength = 6;
+            label2.BackColor = Color.Transparent;
+            label3.BackColor = Color.Transparent;
+            label4.BackColor = Color.Transparent;
+            button1.BackgroundImage = new Bitmap(@"C:\Users\wewewewe\Desktop\app art\register.png");
+            button1.BackgroundImageLayout = ImageLayout.Stretch;
+            this.BackgroundImage = new Bitmap(@"C:\Users\wewewewe\Desktop\app art\bg.jpg");
+            this.BackgroundImageLayout = ImageLayout.Stretch;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -36,44 +47,45 @@ namespace WindowsFormsApp1
             if (!string.IsNullOrWhiteSpace(textBox1.Text))
                 if (!string.IsNullOrWhiteSpace(textBox2.Text))
                     if (!string.IsNullOrWhiteSpace(textBox3.Text))
-                        if(textBox2.Text.Equals(textBox3.Text))
-                            if(check())
-                        if (!System.IO.File.Exists(@"F:\" + filename + ".txt"))
-            {
-                using (System.IO.File.Create(@"F:\" + filename + ".txt"))
-                for(int i = 0; i < pass.Length; i++)
-                {
-                    p = pass[i] - 48;
-                    p *= (i+1);
-                    pass2 += p.ToString();
-                }
-                string name = textBox1.Text;
-                for (int i = 0; i < name.Length; i++)
-                {
-                                        if (name[i] > 90)
+                        if (textBox2.Text.Equals(textBox3.Text))
+                            if (check())
+                                if (textBox2.Text.Length < 7)
+                                    if (!System.IO.File.Exists(@"F:\" + filename + ".txt"))
+                                    {
+                                        using (System.IO.File.Create(@"F:\" + filename + ".txt"))
+                                            for (int i = 0; i < pass.Length; i++)
+                                            {
+                                                p = pass[i] - 48;
+                                                p = 10 * (i + 1) + p;
+                                                pass2 += p.ToString();
+                                            }
+                                        string name = textBox1.Text;
+                                        for (int i = 0; i < name.Length; i++)
                                         {
-                                            c = name[i] - 96;
-                                            cypher2 += cypher3[c - 1];
+                                            if (name[i] > 90)
+                                            {
+                                                c = name[i] - 96;
+                                                cypher2 += cypher3[c - 1];
+                                            }
+                                            else
+                                            {
+                                                c = name[i] - 64;
+                                                cypher2 += cypher[c - 1];
+                                            }
                                         }
-                                        else
+                                        using (System.IO.StreamWriter file =
+                                      new System.IO.StreamWriter(@"F:\secrets.txt", true))
                                         {
-                                            c = name[i] - 64;
-                                            cypher2 += cypher[c - 1];
-                                        }                    
-                }
-                using (System.IO.StreamWriter file =
-              new System.IO.StreamWriter(@"F:\secrets.txt", true))
-                {
-                    file.WriteLine(cypher2);
-                    file.WriteLine(pass2);
-                }
-            }
-            else
-                MessageBox.Show("Username Taken");
-            else MessageBox.Show("your pass can contain only numbres");
-            else MessageBox.Show("passwords dont match"); 
-            else MessageBox.Show("you need to confirm your pass");
-            else MessageBox.Show("you need to enter a pass");
+                                            file.WriteLine(cypher2);
+                                            file.WriteLine(pass2);
+                                        }
+                                    }
+                                    else MessageBox.Show("Username Taken");
+                                else MessageBox.Show("your password can't be longer than 6 digits");
+                            else MessageBox.Show("your pass can contain only numbres");
+                        else MessageBox.Show("passwords dont match");
+                    else MessageBox.Show("you need to confirm your pass");
+                else MessageBox.Show("you need to enter a pass");
             else MessageBox.Show("you need to enter username");
         }
         public bool check()
@@ -83,6 +95,11 @@ namespace WindowsFormsApp1
                 if (pass3[i] < 48 || pass3[i] > 57)
                     return false;
             return true;
+        }
+
+        private void Form2_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
